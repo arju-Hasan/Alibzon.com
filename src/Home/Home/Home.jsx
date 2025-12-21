@@ -5,7 +5,7 @@ import Footer from '../../Component/Footer/Footer';
 const Home = () => {
     return (
         <div>
-            this is home page            
+            <h2 className='text-2xl font-bold text-center'> This is home page.....   </h2>
         </div>
     );
 };
