@@ -22,6 +22,7 @@ export default function Navbar() {
     (total, item) => total + item.quantity,
     0
   );
+  console.log(cart);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -43,7 +44,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center md:mr-5 space-x-2">
             <Image
               src="/AZ.png"
               alt="Alibzon"
@@ -160,7 +161,7 @@ export default function Navbar() {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                className="w-full md:w-1/6 pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
               />
               <button
                 type="submit"

@@ -7,7 +7,14 @@ import { authReducer, initialAuthState } from "../lib/reducers/authReducer";
 const AppContext = createContext();
 
 export function Providers({ children }) {
-  const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
+  // const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
+  const [cartState, cartDispatch] = useReducer(cartReducer, [], () => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+    return [];
+  });
+
   const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
   // Load cart from localStorage
@@ -17,6 +24,10 @@ export function Providers({ children }) {
       cartDispatch({ type: "LOAD_CART", payload: JSON.parse(savedCart) });
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartState));
+  }, [cartState]);
 
   // Save cart to localStorage
   useEffect(() => {

@@ -254,6 +254,15 @@ export default function ProductDetails({ productId }) {
 
           {/* Add to Cart */}
           <div className="flex space-x-4">
+            <a
+              href="/cart"
+              onClick={addToCart}
+              disabled={product.stock === 0}
+              className="flex-1 btn-primary flex items-center justify-center space-x-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              {/* <FiShoppingCart size={20} /> */}
+              <span>Buy Now</span>
+            </a>
             <button
               onClick={addToCart}
               disabled={product.stock === 0}

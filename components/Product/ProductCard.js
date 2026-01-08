@@ -102,7 +102,7 @@ export default function ProductCard({ product }) {
               href={`/product/${product._id}`}
               className="flex-1 bg-gray-100 text-gray-800 py-2 px-4 rounded-lg text-center text-sm hover:bg-gray-200 transition-colors"
             >
-              View More
+              Order Now
             </Link>
             <button
               onClick={addToCart}

@@ -105,7 +105,7 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            Or <br />
             <Link
               href="/register"
               className="font-medium text-primary hover:text-secondary"

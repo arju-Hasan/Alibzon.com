@@ -29,6 +29,11 @@ export default function CheckoutPage() {
       window.location.href = "/login?redirect=/checkout";
       return;
     }
+    if (auth.loading) return; // wait until loading finishes
+
+    if (!auth.user) {
+      window.location.href = "/login?redirect=/checkout";
+    }
 
     // Pre-fill address if available
     if (auth.user.address) {
@@ -44,7 +49,35 @@ export default function CheckoutPage() {
         phone: auth.user.phone || "",
       }));
     }
-  }, [auth.user]);
+  }, [auth.loading, auth.user]);
+
+  // useEffect(() => {
+  //   // 1️⃣ Auth not initialized yet → wait
+  //   if (auth.user === undefined || auth.loading) {
+  //     return;
+  //   }
+
+  //   // 2️⃣ User not logged in → redirect
+  //   if (auth.user === null) {
+  //     window.location.href = "/login?redirect=/checkout";
+  //     return;
+  //   }
+
+  //   // 3️⃣ User logged in → pre-fill address
+  //   if (auth.user?.address) {
+  //     setAddressData({
+  //       name: auth.user.name || "",
+  //       phone: auth.user.phone || "",
+  //       ...auth.user.address,
+  //     });
+  //   } else {
+  //     setAddressData((prev) => ({
+  //       ...prev,
+  //       name: auth.user.name || "",
+  //       phone: auth.user.phone || "",
+  //     }));
+  //   }
+  // }, [auth.user, auth.loading]);
 
   const subtotal = cart.items.reduce(
     (sum, item) => sum + item.price * item.quantity,
